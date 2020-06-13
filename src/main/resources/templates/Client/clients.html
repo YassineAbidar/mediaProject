@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeLeaf/Layout"
+      layout:decorate="~{fragments/loyouts}">
+    <head>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"/>
+        <!-- Google Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
+        <!-- Bootstrap core CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"/>
+        <!-- Material Design Bootstrap -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="../static/css/style.css"
+              th:href="@{css/style.css}"
+              >
+    </head>
+    <body>
+        <!--Navbar-->
+        <div th:insert="~{fragments/header :: header}"></div>
+        <div class="container" layout:fragment="content">
+            <form th:action="@{user/index}" method="get">
+                <label>Mot cle:</label>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="motcle" th:value="${mc}"/>
+                    <button type="submit" class=" mt-2 btn btn-outline-primary">Chercher</button>
+                </div>
+            </form>
+            <table width="1px" class="table table-bordered table-responsive">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>CIN Client</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Telephone</th>
+                        <th>Action</th>
+                    </tr>
+                <tbody>
+                    <tr th:each="client:${listClient}">
+                        <td th:text="${client.id}"></td>
+                        <td th:text="${client.code_client}"></td>
+                        <td th:text="${client.nom}"></td>
+                        <td th:text="${client.prenom}"></td>
+                        <td th:text="${client.tele}"></td>
+                        <td>
+                            <a onclick="return confirm('vous voulez vraiment supprimer le client')" class="btn btn-danger btn-sm" th:href="@{/admin/delete(id=${client.id})}">Delete</a>
+                            <a  class="btn btn-warning btn-sm" th:href="@{/admin/Formupdate(id=${client.id})}">Update</a>
+                            <a  class="btn btn-info btn-sm" th:href="${client.id}">Show</a>
+                        </td>
+                    </tr>
+                </tbody>
+                </thead>
+            </table>
+        </div>
+        <div th:insert="~{fragments/footer :: footer}"></div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Bootstrap tooltips -->
+        <script type="text/javascript" src="https://  cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/js/mdb.min.js"></script>
+    </body>
+</html>

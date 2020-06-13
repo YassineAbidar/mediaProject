@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>TODO supply a title</title>
+<meta charset="UTF-8" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" />
+<!-- Google Fonts -->
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+<!-- Bootstrap core CSS -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+	rel="stylesheet" />
+<!-- Material Design Bootstrap -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css"
+	rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="../static/css/style.css"
+	th:href="@{css/style.css}">
+</head>
+<body>
+	<div th:insert="~{fragments/header :: header}"></div>
+	<div class="container">
+		<center>
+			<h1 th:if="${client.id>0}" class="mt-2">Update Client</h1>
+		</center>
+         <form th:action="@{/admin/save}" method="POST"> 
+         <div class="form-group">
+				<label>Id</label> <input class="form-control" type="text"
+					name="id" th:value="${client.id}" /> <span class="text-danger"
+					th:errors="${client.id}"></span>
+			</div>
+			<div class="form-group">
+				<label>Nom</label> <input class="form-control" type="text"
+					name="nom" th:value="${client.nom}" /> <span class="text-danger"
+					th:errors="${client.nom}"></span>
+			</div>
+			<div class="form-group">
+				<label>Prenom</label> <input type="text" class="form-control"
+					name="prenom" th:value="${client.prenom}" /> <span
+					class="text-danger" th:errors="${client.prenom}"></span>
+			</div>
+			<div class="form-group">
+				<label>Cin </label> <input type="text" class="form-control"
+					name="code_client" th:value="${client.code_client}" /> <span
+					class="text-danger" th:errors="${client.code_client}"></span>
+			</div>
+			<div class="form-group">
+				<label>Telephone</label> <input type="text" class="form-control"
+					name="tele" th:value="${client.tele}" /> <span class="text-danger"
+					th:errors="${client.tele}"></span>
+			</div>
+			<button type="submit"
+				class="btn btn-outline-dark">Update</button>
+			<!--th:if="${teacher.gender == 'F'}"-->
+		</form>
+	</div>
+	<div th:insert="~{fragments/footer :: footer}"></div>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/js/mdb.min.js"></script>
+</body>
+</html>
